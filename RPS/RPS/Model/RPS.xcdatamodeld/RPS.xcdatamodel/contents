@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15C50" minimumToolsVersion="Automatic">
+    <entity name="Device" representedClassName="Device" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <relationship name="games" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Game" inverseName="device" inverseEntity="Game" syncable="YES"/>
+    </entity>
+    <entity name="Game" representedClassName="Game" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="won" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <relationship name="device" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Device" inverseName="games" inverseEntity="Device" syncable="YES"/>
+        <relationship name="rounds" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Round" inverseName="game" inverseEntity="Round" syncable="YES"/>
+    </entity>
+    <entity name="Round" representedClassName="Round" syncable="YES">
+        <attribute name="player1Choice" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="player2Choice" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="game" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Game" inverseName="rounds" inverseEntity="Game" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Device" positionX="-252" positionY="36" width="128" height="30"/>
+        <element name="Game" positionX="99" positionY="-162" width="128" height="30"/>
+        <element name="Round" positionX="259" positionY="45" width="128" height="30"/>
+    </elements>
+</model>

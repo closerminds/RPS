@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites tests='3' failures='0'>
+  <testsuite name='RPSTests' tests='2' failures='0'>
+    <testcase classname='RPSTests' name='testExample' time='0.059'/>
+    <testcase classname='RPSTests' name='testPerformanceExample' time='0.623'/>
+  </testsuite>
+  <testsuite name='RPSUITests' tests='1' failures='0'>
+    <testcase classname='RPSUITests' name='testExample' time='4.904'/>
+  </testsuite>
+</testsuites>

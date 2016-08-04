@@ -1,0 +1,7 @@
+app_identifier "fr.sygma.rps" # The bundle identifier of your app
+apple_id "sygma.engineering@gmail.com" # Your Apple email address
+
+team_id "UW7B8G73TS"  # Developer Portal Team ID
+
+# you can even provide different app identifiers, Apple IDs and team names per lane:
+# More information: https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Appfile.md
