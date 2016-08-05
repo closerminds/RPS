@@ -2,7 +2,7 @@
 //  Round+CoreDataProperties.h
 //  RPS
 //
-//  Created by Jeremy on 04/08/2016.
+//  Created by Jeremy on 05/08/2016.
 //  Copyright © 2016 Jeremy. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -10,6 +10,7 @@
 //
 
 #import "Round.h"
+#import "Game.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,7 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nullable, nonatomic, retain) NSNumber *player1Choice;
 @property (nullable, nonatomic, retain) NSNumber *player2Choice;
-@property (nullable, nonatomic, retain) NSManagedObject *game;
+@property (nullable, nonatomic, retain) NSNumber *result;
+@property (nullable, nonatomic, retain) Game *game;
 
 @end
 

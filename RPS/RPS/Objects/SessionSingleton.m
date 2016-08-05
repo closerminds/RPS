@@ -25,7 +25,7 @@
 -(Device *)loadExistingData{
     NSInteger idDevice = [[NSUserDefaults standardUserDefaults]integerForKey:@"iddevice"];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Device"];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %d",idDevice];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"iddevice == %d",idDevice];
     [fetchRequest setPredicate:predicate];
     NSMutableArray *results = [[[appDelegate managedObjectContext] executeFetchRequest:fetchRequest error:nil] mutableCopy];
     if (results.count>0) {
@@ -34,7 +34,7 @@
     else{
         device = [NSEntityDescription insertNewObjectForEntityForName:@"Device" inManagedObjectContext:[appDelegate managedObjectContext]];
         idDevice = [[NSDate date] timeIntervalSince1970];
-        [device  setValue:[NSNumber numberWithInteger:idDevice] forKey:@"id"];
+        [device  setValue:[NSNumber numberWithInteger:idDevice] forKey:@"iddevice"];
         NSError *error = nil;
         // Save the object to persistent store
         if (![[appDelegate managedObjectContext] save:&error]) {

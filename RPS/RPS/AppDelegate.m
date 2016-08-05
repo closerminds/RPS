@@ -38,6 +38,9 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    /*UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+    UITabBarController *tabBarController = (UITabBarController*)[mainStoryboard instantiateViewControllerWithIdentifier:@"mainTabbarController"];
+    [[[[tabBarController tabBar] items] objectAtIndex:1] setBadgeValue:[NSString stringWithFormat:@"%d",1]];*/
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

@@ -2,7 +2,7 @@
 //  Device+CoreDataProperties.h
 //  RPS
 //
-//  Created by Jeremy on 04/08/2016.
+//  Created by Jeremy on 05/08/2016.
 //  Copyright © 2016 Jeremy. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -15,8 +15,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Device (CoreDataProperties)
 
-@property (nullable, nonatomic, retain) NSNumber *id;
-@property (nullable, nonatomic, retain) Game *games;
+@property (nullable, nonatomic, retain) NSNumber *iddevice;
+@property (nullable, nonatomic, retain) NSSet<Game *> *games;
+
+@end
+
+@interface Device (CoreDataGeneratedAccessors)
+
+- (void)addGamesObject:(Game *)value;
+- (void)removeGamesObject:(Game *)value;
+- (void)addGames:(NSSet<Game *> *)values;
+- (void)removeGames:(NSSet<Game *> *)values;
 
 @end
 
