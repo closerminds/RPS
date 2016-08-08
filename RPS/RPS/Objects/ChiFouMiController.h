@@ -24,6 +24,16 @@ typedef enum{
     LOOSE = -1
 }GResult;
 
+@protocol ChiFouMiDelegate <NSObject>
+
+@required
+-(void)affectRound:(GResult)roundResult forRound:(NSInteger)roundIndex;
+-(void)newRound;
+-(void)endGame:(GResult)finalResult;
+@optional
+
+@end
+
 @interface ChiFouMiController : NSObject
 {
     NSInteger player1Score;
@@ -32,6 +42,8 @@ typedef enum{
 @property (nonatomic)BOOL gameComplet;
 @property (nonatomic)NSInteger roundIndex;
 @property (nonatomic,strong)Game *currentGame;
+
+@property (nonatomic)UIViewController<ChiFouMiDelegate> *delegate;
 
 -(RPSCode)generateChoice;
 -(GResult)determineWinner:(RPSCode)computerCode withPlayerChoice:(RPSCode)playerCode;

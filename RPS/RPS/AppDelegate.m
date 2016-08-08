@@ -17,8 +17,23 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+    //singleton session initializer
     [SessionSingleton sharedSessionSingleton];
+    
+    //UI
+    //change color of navigation bar and navigation title
+    [[UINavigationBar appearance] setTitleTextAttributes:
+     [NSDictionary dictionaryWithObjectsAndKeys:
+      [UIColor whiteColor],NSForegroundColorAttributeName,nil]];
+    [[UINavigationBar appearance] setBarTintColor:RGBCOLOR_A(4, 29, 39, 1)];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    
+    //change color of tabbar and items
+    [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UITabBar appearance] setBarTintColor:RGBCOLOR_A(4, 29, 39, 1)];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(updateScoreBadge) name:@"NEW_SCORE_CAN_DISPLAY" object:nil];
     return YES;
 }
 
@@ -38,9 +53,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    /*UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-    UITabBarController *tabBarController = (UITabBarController*)[mainStoryboard instantiateViewControllerWithIdentifier:@"mainTabbarController"];
-    [[[[tabBarController tabBar] items] objectAtIndex:1] setBadgeValue:[NSString stringWithFormat:@"%d",1]];*/
+
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -50,7 +63,6 @@
 }
 
 #pragma mark - Core Data stack
-
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
@@ -127,6 +139,12 @@
             abort();
         }
     }
+}
+
+#pragma mark tabbar score badge
+-(void)updateScoreBadge{
+    UITabBarController *tabBarController =(UITabBarController *)self.window.rootViewController;
+    [[[[tabBarController tabBar] items] objectAtIndex:1] setBadgeValue:[NSString stringWithFormat:@"%d",1]];
 }
 
 @end

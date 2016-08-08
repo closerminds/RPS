@@ -14,7 +14,7 @@
 #define HAND_SPACING 20
 #define HAND_SIZE 60
 
-@interface GameViewController : UIViewController<UIAlertViewDelegate>
+@interface GameViewController : UIViewController<UIAlertViewDelegate,ChiFouMiDelegate>
 {
     SessionSingleton *session;
     UILabel *computeurTitle;
@@ -31,5 +31,7 @@
     
     NSMutableArray *computerRoundViews;
     NSMutableArray *playerRoundViews;
+    
+    UILabel *roundResultLabel;
 }
 @end

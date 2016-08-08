@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.view setBackgroundColor:[UIColor whiteColor]];
+    [self.view setBackgroundColor:RGBCOLOR_A(6, 51, 68, 1)];
     session = [SessionSingleton sharedSessionSingleton];
     
     self.title = NSLocalizedString(@"RUN !", @"");
@@ -25,12 +25,14 @@
     playerRoundViews = [[NSMutableArray alloc]init];
     
     computeurTitle = [[UILabel alloc]initWithFrame:CGRectMake(10, 64, session.utils.screenWidth-20, 20)];
+    [computeurTitle setTextColor:[UIColor whiteColor]];
     [computeurTitle setTextAlignment:NSTextAlignmentRight];
     [computeurTitle setText:NSLocalizedString(@"COMPUTER", @"")];
     [self.view addSubview:computeurTitle];
     
     UILabel *computeurRounds = [[UILabel alloc]initWithFrame:CGRectMake(session.utils.screenWidth-110, CGRectGetMaxY(computeurTitle.frame), 100, 20)];
     [computeurRounds setText:NSLocalizedString(@"ROUNDS", @"")];
+    [computeurRounds setTextColor:[UIColor whiteColor]];
     [computeurRounds setTextAlignment:NSTextAlignmentRight];
     [computeurRounds setFont:[UIFont systemFontOfSize:[UIFont systemFontSize]-2]];
     [self.view addSubview:computeurRounds];
@@ -48,11 +50,13 @@
     
      playerTitle = [[UILabel alloc]initWithFrame:CGRectMake(10, session.utils.screenHeight-HAND_SIZE-40, session.utils.screenWidth-20, 20)];
     [playerTitle setTextAlignment:NSTextAlignmentLeft];
+    [playerTitle setTextColor:[UIColor whiteColor]];
     [playerTitle setText:NSLocalizedString(@"PLAYER 1", @"")];
     [self.view addSubview:playerTitle];
     
     UILabel *playerRounds = [[UILabel alloc]initWithFrame:CGRectMake(10, CGRectGetMinY(playerTitle.frame)-20, 100, 20)];
     [playerRounds setText:NSLocalizedString(@"ROUNDS", @"")];
+    [playerRounds setTextColor:[UIColor whiteColor]];
     [playerRounds setTextAlignment:NSTextAlignmentLeft];
     [playerRounds setFont:[UIFont systemFontOfSize:[UIFont systemFontSize]-2]];
     [self.view addSubview:playerRounds];
@@ -85,6 +89,13 @@
     [playerChoiceZone.layer setBorderColor:[UIColor greenColor].CGColor];
     [self.view addSubview:playerChoiceZone];
     
+    roundResultLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, CGRectGetMaxY(playerChoiceZone.frame)+10, session.utils.screenWidth-20, 50)];
+    [roundResultLabel setFont:[UIFont boldSystemFontOfSize:[UIFont systemFontSize]+1]];
+    [roundResultLabel setTextColor:[UIColor whiteColor]];
+    [roundResultLabel setTextAlignment:NSTextAlignmentCenter];
+    roundResultLabel.alpha=0;
+    [self.view addSubview:roundResultLabel];
+    
     //Views to display hands CHIFOUMI
     handsView = [[NSMutableArray alloc]init];
     float maxHandsWidth = HAND_SIZE*NB_HANDS+HAND_SPACING*(NB_HANDS-1);
@@ -96,7 +107,7 @@
         [imageView.layer setCornerRadius:HAND_SIZE/2];
         [imageView setClipsToBounds:YES];
         [imageView.layer setBorderWidth:1];
-        [imageView.layer setBorderColor:[UIColor blackColor].CGColor];
+        [imageView.layer setBorderColor:[UIColor whiteColor].CGColor];
         [imageView setContentMode:UIViewContentModeScaleAspectFill];
         [imageView.layer setMasksToBounds:YES];
         imageView.tag=i;
@@ -116,6 +127,21 @@
     [self newGame];
 }
 
+/************
+ ** Initialize controller and delegate for call backs
+ ************/
+#pragma mark Initialize controller and delegate for call backs
+-(void)newGame{
+    ia = [[ChiFouMiController alloc]init];
+    [ia setDelegate:self];
+    for(UIView *v in computerRoundViews){
+        [v setBackgroundColor:[UIColor clearColor]];
+    }
+    for(UIView *v in playerRoundViews){
+        [v setBackgroundColor:[UIColor clearColor]];
+    }
+    [self newRound];
+}
 
 /************
  ** Player moves
@@ -176,7 +202,7 @@
             [h.layer setBorderColor:[UIColor greenColor].CGColor];
         }
         else{
-            [h.layer setBorderColor:[UIColor blackColor].CGColor];
+            [h.layer setBorderColor:[UIColor whiteColor].CGColor];
         }
     }
 }
@@ -197,52 +223,40 @@
                          
                          [computeurChoice setImage:[UIImage imageNamed:[NSString stringWithFormat:@"hand_%d",computerChoice]]];
                          
-                         GResult roundResult = [ia determineWinner:computerChoice withPlayerChoice:(RPSCode)handView.tag];
-                         
-                         //if egality the round is null
-                         if (roundResult==EGALITY) {
-                             [self performSelector:@selector(newRound) withObject:nil afterDelay:2];
-                         }
-                         else{
-                             [self affectRound:roundResult forRound:ia.roundIndex];
-                             
-                             ia.roundIndex++;
-                             if (ia.gameComplet) {
-                                 [self endGame];
-                             }
-                             else{
-                                 [self performSelector:@selector(newRound) withObject:nil afterDelay:2];
-                             }
-                         }
+                         [ia determineWinner:computerChoice withPlayerChoice:(RPSCode)handView.tag];
                      }];
+     
 }
 
+
+/************
+ ** Controller Call backs
+ ************/
+#pragma mark Chifoumi call backs
 -(void)affectRound:(GResult)roundResult forRound:(NSInteger)roundIndex{
     switch (roundResult) {
         case WIN:
         {
             [((UIView*)[computerRoundViews objectAtIndex:roundIndex])setBackgroundColor:[UIColor redColor]];
             [((UIView*)[playerRoundViews objectAtIndex:roundIndex])setBackgroundColor:[UIColor greenColor]];
+            [roundResultLabel setTextColor:UIColorFromRGBWithAlpha(0x4CD964, 1)];
+            [roundResultLabel setText:NSLocalizedString(@"YOU_WIN", @"")];
         }break;
         case LOOSE:
         {
             [((UIView*)[computerRoundViews objectAtIndex:roundIndex])setBackgroundColor:[UIColor greenColor]];
             [((UIView*)[playerRoundViews objectAtIndex:roundIndex])setBackgroundColor:[UIColor redColor]];
+            [roundResultLabel setTextColor:[UIColor redColor]];
+            [roundResultLabel setText:NSLocalizedString(@"YOU_LOOSE", @"")];
         }break;
         default:
+        {
+            [roundResultLabel setTextColor:[UIColor lightGrayColor]];
+            [roundResultLabel setText:NSLocalizedString(@"EQUALITY", @"")];
+        }
             break;
     }
-}
-
--(void)newGame{
-    ia = [[ChiFouMiController alloc]init];
-    for(UIView *v in computerRoundViews){
-        [v setBackgroundColor:[UIColor clearColor]];
-    }
-    for(UIView *v in playerRoundViews){
-        [v setBackgroundColor:[UIColor clearColor]];
-    }
-    [self newRound];
+    roundResultLabel.alpha=1;
 }
 
 -(void)newRound{
@@ -252,6 +266,7 @@
                             options: UIViewAnimationOptionCurveEaseOut
                          animations:^{
                              handView.frame = CGRectMake(handX+handView.tag*(HAND_SIZE+HAND_SPACING),handY,HAND_SIZE,HAND_SIZE);
+                             roundResultLabel.alpha=0;
                          }completion:^(BOOL finished){
                              [computeurChoice setImage:[UIImage imageNamed:@"qmark"]];
                          }];
@@ -260,19 +275,18 @@
     [self.view setUserInteractionEnabled:YES];
 }
 
--(void)endGame{
-    GResult finalResult = [ia gameFinished];
+-(void)endGame:(GResult)finalResult{
     DLog(@"FINAL RESULT = %d",finalResult);
     NSString *alertMsg = @"";
     switch (finalResult) {
         case WIN:
-            alertMsg = NSLocalizedString(@"YOU WIN", @"");
+            alertMsg = NSLocalizedString(@"YOU_WIN", @"");
             break;
         case LOOSE:
-            alertMsg = NSLocalizedString(@"YOU LOOSE", @"");
+            alertMsg = NSLocalizedString(@"YOU_LOOSE", @"");
             break;
         default: // must never append
-            alertMsg = NSLocalizedString(@"EGALITY", @"");
+            alertMsg = NSLocalizedString(@"EQUALITY", @"");
             break;
     }
     UIAlertView *finalAlert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"END GAME", @"") message:alertMsg delegate:self cancelButtonTitle:NSLocalizedString(@"STOP PLAYING", @"") otherButtonTitles:NSLocalizedString(@"PLAY AGAIN", @""), nil];
@@ -280,6 +294,8 @@
     [finalAlert show];
 }
 
+
+#pragma mark alertview delegate
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (alertView.tag==998) {
         if (buttonIndex==0) {

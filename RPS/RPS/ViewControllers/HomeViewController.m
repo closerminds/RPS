@@ -17,6 +17,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.view setBackgroundColor:RGBCOLOR_A(6, 51, 68, 1)];
+    
     session = [SessionSingleton sharedSessionSingleton];
     
     UIImageView *rulesImage = [[UIImageView alloc]initWithFrame:CGRectMake(session.utils.screenWidth/2-RULES_IMAGE_WIDTH/2, session.utils.screenHeight/2-RULES_IMAGE_HEIGHT/2-PLAY_BTN_HEIGHT/2-20, RULES_IMAGE_WIDTH, RULES_IMAGE_HEIGHT)];
@@ -26,7 +29,7 @@
     
     UIButton *newGameButton = [[UIButton alloc]initWithFrame:CGRectMake(session.utils.screenWidth/2-PLAY_BTN_WIDTH/2,CGRectGetMaxY(rulesImage.frame)+10, PLAY_BTN_WIDTH, PLAY_BTN_HEIGHT)];
     [newGameButton.layer setCornerRadius:10];
-    [newGameButton setBackgroundColor:UIColorFromRGBWithAlpha(0xF9313B, 1)];
+    [newGameButton setBackgroundColor:UIColorFromRGBWithAlpha(0x4CD964, 1)];
     [newGameButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [newGameButton setTitleColor:RGBCOLOR_A(255, 255, 255, 0.5) forState:UIControlStateHighlighted];
     [newGameButton setTitle:NSLocalizedString(@"NEW GAME", @"") forState:UIControlStateNormal];

@@ -596,6 +596,7 @@
 				FA7345251D53610800A63508 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FA7345261D53610800A63508 /* Build configuration list for PBXNativeTarget "RPSTests" */ = {
 			isa = XCConfigurationList;
@@ -604,6 +605,7 @@
 				FA7345281D53610800A63508 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FA7345291D53610800A63508 /* Build configuration list for PBXNativeTarget "RPSUITests" */ = {
 			isa = XCConfigurationList;
@@ -612,6 +614,7 @@
 				FA73452B1D53610800A63508 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

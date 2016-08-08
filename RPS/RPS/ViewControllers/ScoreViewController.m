@@ -17,7 +17,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     session = [SessionSingleton sharedSessionSingleton];
-
+    
+    //remove badge from tabbar
+    [[[self.tabBarController tabBar]items] objectAtIndex:self.tabBarController.selectedIndex].badgeValue = nil;
 }
 
 - (void)didReceiveMemoryWarning {

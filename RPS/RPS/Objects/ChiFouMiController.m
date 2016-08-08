@@ -12,6 +12,7 @@
 @synthesize roundIndex;
 @synthesize currentGame;
 @synthesize gameComplet;
+@synthesize delegate;
 
 -(id)init{
     self = [super init];
@@ -53,6 +54,25 @@
         gameComplet = YES;
     }
     
+    if(delegate){
+        if([delegate respondsToSelector:@selector(affectRound:forRound:)]){
+           [delegate affectRound:result forRound:roundIndex];
+        }
+        if (gameComplet && [delegate respondsToSelector:@selector(endGame:)]) {
+            [delegate endGame:[self gameFinished]];
+        }
+        else{
+            if([delegate respondsToSelector:@selector(newRound)]){
+                [delegate performSelector:@selector(newRound) withObject:nil afterDelay:1.5];
+            }
+        }
+    }
+    
+    //if egality the round is null
+    if (result!=EGALITY) {
+        roundIndex++;
+    }
+
     return result;
 }
 
@@ -69,6 +89,7 @@
     if (![[[SessionSingleton sharedSessionSingleton].appDelegate managedObjectContext] save:&error]) {
         DLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
     }
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"NEW_SCORE_CAN_DISPLAY" object:nil];
     return gameResult;
 }
 
