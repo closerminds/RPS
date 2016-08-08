@@ -45,7 +45,7 @@
         <scene sceneID="Qra-41-jp1">
             <objects>
                 <navigationController title="Score" id="ZKJ-4x-VF2" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="1" title="Score" image="score" id="mjZ-3u-Tj3"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="Scores" image="score" id="mjZ-3u-Tj3"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ws6-Yc-bBH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -71,7 +71,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Score" id="vs7-6E-s6a"/>
+                    <navigationItem key="navigationItem" title="Scores" id="vs7-6E-s6a"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OwU-5v-Mwh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

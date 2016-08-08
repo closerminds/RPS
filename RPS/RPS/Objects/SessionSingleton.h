@@ -88,6 +88,9 @@ return self; \
 @property(nonatomic,strong)AppDelegate *appDelegate;
 @property(nonatomic,strong)UtilsObject *utils;
 @property(nonatomic,strong)Device *device;
+@property (nonatomic)BOOL enableAnimations;
+
+-(void)disableAllAnimations;
 
 -(Device *)loadExistingData;
 @end

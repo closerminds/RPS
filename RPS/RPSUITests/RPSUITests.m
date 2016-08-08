@@ -32,9 +32,41 @@
     [super tearDown];
 }
 
-- (void)testExample {
-    // Use recording to get started writing UI tests.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
+- (void)testFullGameUI {
+   
+    
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    [UIView setAnimationsEnabled:NO];
+    [app.buttons[@"New Game"] tap];
+    [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:.5]];
+    
+    XCUIElement *hand0Image = app.images[@"hand_0"];
+    [hand0Image tap];
+    [hand0Image tap];
+    [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:5]];
+    
+    XCUIElement *hand1Image = app.images[@"hand_1"];
+    [hand1Image tap];
+    [hand1Image tap];
+    
+    [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:5]];
+    XCUIElement *hand2Image = app.images[@"hand_2"];
+    [hand2Image tap];
+    [hand2Image tap];
+    
+    //optional hands
+
+    [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:3]];
+    while(!app.alerts[@"END_GAME"]){
+        [hand2Image tap];
+        [hand2Image tap];
+        [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:3]];
+    }
+   
+    
+    [app.alerts[@"END_GAME"].collectionViews.buttons[@"STOP_PLAYING"] tap];
+    [app.tabBars.buttons[@"Score"] tap];
+    
 }
 
 @end

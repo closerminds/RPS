@@ -5,4 +5,28 @@
   Created by Jeremy on 04/08/2016.
   Copyright © 2016 Jeremy. All rights reserved.
 */
+
+"CONSIGN_HOME"="Win 3 rounds to win the game !";
 "NEW GAME"="New Game";
+
+"CRESULT_0"="Equality";
+"CRESULT_1"="Win";
+"CRESULT_-1"="Loose";
+
+"DATE_FORMAT" = "dd/MM/yyyy HH:mm";
+"WEEKFORMAT" = "EEEE HH:mm";
+"YESTERDAY" = "Yesterday HH:mm";
+
+
+"CONSIGN"="Double Tap or Drag your hand to the green circle.";
+
+"COMPUTER"="Computer";
+"ROUNDS"="Rounds";
+"PLAYER 1"="You";
+"YOU_WIN"="You Win !";
+"YOU_LOOSE"="You Loose";
+"EQUALITY"="Equality";
+
+"END_GAME"="End of the game !";
+"STOP_PLAYING"="Exit";
+"PLAY_AGAIN"="Play Again";

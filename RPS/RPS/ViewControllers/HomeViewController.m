@@ -22,12 +22,19 @@
     
     session = [SessionSingleton sharedSessionSingleton];
     
-    UIImageView *rulesImage = [[UIImageView alloc]initWithFrame:CGRectMake(session.utils.screenWidth/2-RULES_IMAGE_WIDTH/2, session.utils.screenHeight/2-RULES_IMAGE_HEIGHT/2-PLAY_BTN_HEIGHT/2-20, RULES_IMAGE_WIDTH, RULES_IMAGE_HEIGHT)];
+    UIImageView *rulesImage = [[UIImageView alloc]initWithFrame:CGRectMake(session.utils.screenWidth/2-RULES_IMAGE_WIDTH/2, session.utils.screenHeight/2-RULES_IMAGE_HEIGHT/2-PLAY_BTN_HEIGHT/2-CONSIGNE_LABEL_HEIGHT/2-20, RULES_IMAGE_WIDTH, RULES_IMAGE_HEIGHT)];
     [rulesImage setImage:[UIImage imageNamed:@"rules.jpg"]];
     [rulesImage setContentMode:UIViewContentModeScaleAspectFit];
     [self.view addSubview:rulesImage];
     
-    UIButton *newGameButton = [[UIButton alloc]initWithFrame:CGRectMake(session.utils.screenWidth/2-PLAY_BTN_WIDTH/2,CGRectGetMaxY(rulesImage.frame)+10, PLAY_BTN_WIDTH, PLAY_BTN_HEIGHT)];
+    UILabel *consignLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, CGRectGetMaxY(rulesImage.frame)+10, session.utils.screenWidth-20, CONSIGNE_LABEL_HEIGHT)];
+    [consignLabel setTextColor:[UIColor whiteColor]];
+    [consignLabel setTextAlignment:NSTextAlignmentCenter];
+    [consignLabel setNumberOfLines:0];
+    [consignLabel setText:NSLocalizedString(@"CONSIGN_HOME", @"")];
+    [self.view addSubview:consignLabel];
+    
+    UIButton *newGameButton = [[UIButton alloc]initWithFrame:CGRectMake(session.utils.screenWidth/2-PLAY_BTN_WIDTH/2,CGRectGetMaxY(consignLabel.frame)+10, PLAY_BTN_WIDTH, PLAY_BTN_HEIGHT)];
     [newGameButton.layer setCornerRadius:10];
     [newGameButton setBackgroundColor:UIColorFromRGBWithAlpha(0x4CD964, 1)];
     [newGameButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "SessionSingleton.h"
 
-#define RULES_IMAGE_WIDTH 300
-#define RULES_IMAGE_HEIGHT 300
+#define RULES_IMAGE_WIDTH 240
+#define RULES_IMAGE_HEIGHT 240
+
+#define CONSIGNE_LABEL_HEIGHT 50
 
 #define PLAY_BTN_WIDTH 150
 #define PLAY_BTN_HEIGHT 50

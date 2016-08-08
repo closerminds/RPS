@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3FC962D71D58EB9800E3628B /* ScoreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FC962D61D58EB9800E3628B /* ScoreTableViewCell.m */; };
 		FA7344F81D53610700A63508 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7344F71D53610700A63508 /* main.m */; };
 		FA7344FB1D53610700A63508 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7344FA1D53610700A63508 /* AppDelegate.m */; };
 		FA7345011D53610700A63508 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA7344FF1D53610700A63508 /* Main.storyboard */; };
@@ -47,6 +48,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3FC962D51D58EB9800E3628B /* ScoreTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreTableViewCell.h; sourceTree = "<group>"; };
+		3FC962D61D58EB9800E3628B /* ScoreTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreTableViewCell.m; sourceTree = "<group>"; };
 		FA7344F31D53610600A63508 /* RPS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RPS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA7344F71D53610700A63508 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FA7344F91D53610700A63508 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -113,6 +116,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3FC962D31D58E9E300E3628B /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				3FC962D51D58EB9800E3628B /* ScoreTableViewCell.h */,
+				3FC962D61D58EB9800E3628B /* ScoreTableViewCell.m */,
+			);
+			name = Cells;
+			path = ViewControllers/Cells;
+			sourceTree = "<group>";
+		};
+		3FC962D41D58E9E300E3628B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
+			path = ViewControllers/Views;
+			sourceTree = "<group>";
+		};
 		FA7344EA1D53610600A63508 = {
 			isa = PBXGroup;
 			children = (
@@ -212,6 +233,8 @@
 		FA73452E1D53654600A63508 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				3FC962D31D58E9E300E3628B /* Cells */,
+				3FC962D41D58E9E300E3628B /* Views */,
 				FA73454D1D537B1300A63508 /* HomeViewController.h */,
 				FA73454E1D537B1300A63508 /* HomeViewController.m */,
 				FA7345531D537CB600A63508 /* ScoreViewController.h */,
@@ -366,6 +389,7 @@
 				FA7345601D53902E00A63508 /* ChiFouMiController.m in Sources */,
 				FA73454B1D53725700A63508 /* Device+CoreDataProperties.m in Sources */,
 				FA7345481D53725700A63508 /* Round.m in Sources */,
+				3FC962D71D58EB9800E3628B /* ScoreTableViewCell.m in Sources */,
 				FA7344F81D53610700A63508 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

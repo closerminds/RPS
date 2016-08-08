@@ -12,6 +12,9 @@
 #define NB_HANDS 3
 #define NB_WIN_ROUNDS 3
 #define NB_ROUNDS 5
+
+#define NEXT_ROUND_WAIT 1
+
 typedef enum{
     ROCK    = 0,
     PAPER   = 1,

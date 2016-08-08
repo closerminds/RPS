@@ -93,7 +93,8 @@
     [roundResultLabel setFont:[UIFont boldSystemFontOfSize:[UIFont systemFontSize]+1]];
     [roundResultLabel setTextColor:[UIColor whiteColor]];
     [roundResultLabel setTextAlignment:NSTextAlignmentCenter];
-    roundResultLabel.alpha=0;
+    roundResultLabel.alpha=1;
+    [roundResultLabel setNumberOfLines:0];
     [self.view addSubview:roundResultLabel];
     
     //Views to display hands CHIFOUMI
@@ -155,10 +156,10 @@
     
     recognizer.view.center = CGPointMake(recognizer.view.center.x + translation.x,
                                          recognizer.view.center.y + translation.y);
-
+    roundResultLabel.alpha=0;
     if (recognizer.state == UIGestureRecognizerStateEnded) {
         if(handView.frame.origin.y>playerTitle.frame.origin.y){
-            [UIView animateWithDuration: 0.3
+            [UIView animateWithDuration: ANIMATION_HAND
                                   delay: 0
                                 options: UIViewAnimationOptionCurveEaseOut
                              animations:^{
@@ -182,6 +183,7 @@
 
 -(void)handDoubleTapped:(UITapGestureRecognizer *)recognizer {
     UIImageView *handView = (UIImageView *)recognizer.view;
+    roundResultLabel.alpha=0;
     [self highlightSelectedHand:handView.tag];
     [self playerHasMakeHisChoice:handView];
 }
@@ -213,7 +215,7 @@
 #pragma mark player has played
 -(void)playerHasMakeHisChoice:(UIImageView *)handView{
     [self.view setUserInteractionEnabled:NO];
-    [UIView animateWithDuration: 0.3
+    [UIView animateWithDuration: ANIMATION_HAND
                           delay: 0
                         options: UIViewAnimationOptionCurveEaseOut
                      animations:^{
@@ -221,7 +223,7 @@
                      }completion:^(BOOL finished){
                          RPSCode computerChoice = [ia generateChoice];
                          
-                         [computeurChoice setImage:[UIImage imageNamed:[NSString stringWithFormat:@"hand_%d",computerChoice]]];
+                         [computeurChoice setImage:[UIImage imageNamed:[NSString stringWithFormat:@"computer_hand_%d",computerChoice]]];
                          
                          [ia determineWinner:computerChoice withPlayerChoice:(RPSCode)handView.tag];
                      }];
@@ -267,6 +269,11 @@
                          animations:^{
                              handView.frame = CGRectMake(handX+handView.tag*(HAND_SIZE+HAND_SPACING),handY,HAND_SIZE,HAND_SIZE);
                              roundResultLabel.alpha=0;
+                             if(ia.currentGame.rounds.count==0){
+                                 roundResultLabel.alpha=1;
+                                 [roundResultLabel setTextColor:[UIColor whiteColor]];
+                                 [roundResultLabel setText:NSLocalizedString(@"CONSIGN", @"")];
+                             }
                          }completion:^(BOOL finished){
                              [computeurChoice setImage:[UIImage imageNamed:@"qmark"]];
                          }];
@@ -289,7 +296,7 @@
             alertMsg = NSLocalizedString(@"EQUALITY", @"");
             break;
     }
-    UIAlertView *finalAlert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"END GAME", @"") message:alertMsg delegate:self cancelButtonTitle:NSLocalizedString(@"STOP PLAYING", @"") otherButtonTitles:NSLocalizedString(@"PLAY AGAIN", @""), nil];
+    UIAlertView *finalAlert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"END_GAME", @"") message:alertMsg delegate:self cancelButtonTitle:NSLocalizedString(@"STOP_PLAYING", @"") otherButtonTitles:NSLocalizedString(@"PLAY_AGAIN", @""), nil];
     finalAlert.tag = 998;
     [finalAlert show];
 }

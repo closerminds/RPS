@@ -18,6 +18,7 @@
         self.utils = [[UtilsObject alloc]init];
         appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
         [self loadExistingData];
+        self.enableAnimations = [UIView areAnimationsEnabled];
     }
     return self;
 }
@@ -45,6 +46,11 @@
         }
     }
     return device;
+}
+
+-(void)disableAllAnimations{
+    [UIView setAnimationsEnabled:NO];
+    self.enableAnimations=NO;
 }
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(SessionSingleton);

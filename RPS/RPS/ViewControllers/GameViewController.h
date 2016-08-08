@@ -14,6 +14,8 @@
 #define HAND_SPACING 20
 #define HAND_SIZE 60
 
+#define ANIMATION_HAND 0.3
+
 @interface GameViewController : UIViewController<UIAlertViewDelegate,ChiFouMiDelegate>
 {
     SessionSingleton *session;

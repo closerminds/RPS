@@ -63,7 +63,7 @@
         }
         else{
             if([delegate respondsToSelector:@selector(newRound)]){
-                [delegate performSelector:@selector(newRound) withObject:nil afterDelay:1.5];
+                [delegate performSelector:@selector(newRound) withObject:nil afterDelay:([SessionSingleton sharedSessionSingleton].enableAnimations?NEXT_ROUND_WAIT:0)];
             }
         }
     }

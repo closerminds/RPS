@@ -37,4 +37,5 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:a]
 @property (nonatomic, readonly) CGFloat screenHeight;
 
 - (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize;
+- (NSInteger)daysBetweenDate:(NSDate*)fromDateTime andDate:(NSDate*)toDateTime;
 @end
