@@ -107,7 +107,7 @@
         [computeurChoice.layer setBorderWidth:1];
         [computeurChoice.layer setBorderColor:[UIColor redColor].CGColor];
         [computeurChoice setContentMode:UIViewContentModeScaleAspectFill];
-        [computeurChoice setImage:[UIImage imageNamed:[NSString stringWithFormat:@"computer_hand_%ld",[r.player1Choice integerValue]]]];
+        [computeurChoice setImage:[UIImage imageNamed:[NSString stringWithFormat:@"computer_hand_%ld",(long)[r.player1Choice integerValue]]]];
         [computeurChoice.layer setMasksToBounds:YES];
         computeurChoice.tag=1;
         [self addSubview:computeurChoice];
@@ -118,7 +118,7 @@
         [player1Choice.layer setBorderWidth:1];
         [player1Choice.layer setBorderColor:[UIColor redColor].CGColor];
         [player1Choice setContentMode:UIViewContentModeScaleAspectFill];
-        [player1Choice setImage:[UIImage imageNamed:[NSString stringWithFormat:@"hand_%ld",[r.player2Choice integerValue]]]];
+        [player1Choice setImage:[UIImage imageNamed:[NSString stringWithFormat:@"hand_%ld",(long)[r.player2Choice integerValue]]]];
         [player1Choice.layer setMasksToBounds:YES];
         player1Choice.tag=1;
         [self addSubview:player1Choice];
