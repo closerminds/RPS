@@ -28,11 +28,12 @@
     [myTableView setBackgroundColor:[UIColor clearColor]];
     
     [self.view addSubview:myTableView];
+    [self reloadData];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     //remove badge from tabbar
-    [[[self.tabBarController tabBar]items] objectAtIndex:self.tabBarController.selectedIndex].badgeValue = nil;
+    [[[self.tabBarController tabBar]items] objectAtIndex:1].badgeValue = nil;
     [self reloadData];
 }
 
@@ -54,14 +55,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSInteger row = indexPath.row;
-    NSString *identifier = [NSString stringWithFormat:@"Cell%ld",(long)row];
+    NSString *identifier = [NSString stringWithFormat:@"Cell_SCORE_%ld",(long)row];
     ScoreTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
         cell = [[ScoreTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
+    //NOT OPTIMIzED
     if([[games objectAtIndex:row] rounds].count>row){
         [cell updateRow:[games objectAtIndex:row]];
     }
+    
     return cell;
 }
 

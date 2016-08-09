@@ -57,6 +57,9 @@
     return self;
 }
 
+/**
+ * Not Optimized
+ */
 -(void)updateRow:(Game*)game{
     for(UIView *v in self.subviews){
         if(v.tag==1){
