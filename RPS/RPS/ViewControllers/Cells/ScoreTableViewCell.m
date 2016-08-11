@@ -81,16 +81,19 @@
         }
         else{
             if(nbDaysBetween==1){
-                [formatter setDateFormat:NSLocalizedString(@"YESTERDAY", @"")];
+                [formatter setDateFormat:@"HH:mm"];
+                [dateGameLabel setText:[NSString stringWithFormat:@"%@ %@",NSLocalizedString(@"YESTERDAY",@""),[formatter stringFromDate:d]]];
             }
             else if(nbDaysBetween<7){
                 [formatter setDateFormat:NSLocalizedString(@"WEEKFORMAT", @"")];
+                [dateGameLabel setText:[formatter stringFromDate:d]];
             }
             else{
                 [formatter setDateFormat:NSLocalizedString(@"DATE_FORMAT", @"")];
+                [dateGameLabel setText:[formatter stringFromDate:d]];
             }
         }
-        [dateGameLabel setText:[formatter stringFromDate:d]];
+        
     }
     else{
         [dateGameLabel setText:@""];

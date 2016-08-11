@@ -15,7 +15,7 @@
 
 "DATE_FORMAT" = "dd/MM/yyyy HH:mm";
 "WEEKFORMAT" = "EEEE HH:mm";
-"YESTERDAY" = "Yesterday HH:mm";
+"YESTERDAY" = "Yesterday";
 
 
 "CONSIGN"="Double Tap or Drag your hand to the green circle.";
